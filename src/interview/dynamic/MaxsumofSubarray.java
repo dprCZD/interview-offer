@@ -13,14 +13,17 @@ package interview.dynamic;
 public class MaxsumofSubarray {
 
     public int maxsumofSubarray (int[] arr) {
-        int max=Integer.MIN_VALUE;
-        int cur=0;
+        int max=arr[0];
+        int sum=0;
         // write code here
-        for(int i=1;i<arr.length;i++){
-            cur+=arr[i];
-            max=Math.max(cur,max);
-            //如果当前和<0则减去这一段。
-            cur=cur<0?0:cur;
+        for(int i=0;i<arr.length;i++){
+            //如果到现在为止的总和>0说明当前总和是有用的。否则总和是无用的应该删去。
+            if(sum>0){
+                sum+=arr[i];
+            } else {
+                sum=arr[i];
+            }
+            max=Math.max(sum,max);
         }
         return max;
     }

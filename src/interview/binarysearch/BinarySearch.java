@@ -39,6 +39,7 @@ public class BinarySearch {
         }
         return left;
     }
+
     int right(int target,int []array){
         int left=0;
         int right =array.length;

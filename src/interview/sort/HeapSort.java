@@ -5,6 +5,7 @@ import java.util.ArrayList;
 /**
  * @Author: czd
  * @Description:
+ * 堆排序的时间复杂度为O(nlogn)，需要一个临时空间用于交换元素，所以空间复杂度为O(1)，堆排序的位置交换也是跳跃式的，是一个不稳定的排序方法。
  * @Date: 2020/12/20 17:53
  */
 public class HeapSort {

@@ -6,6 +6,10 @@ import java.util.Arrays;
 /**
  * @Author: czd
  * @Description: 快速排序
+ *
+ * 所以最理想的时间复杂度为O(nlogn)O(nlogn)。可以证明平均时间复杂度也为O(nlogn)，
+ * 最坏的情况下它可以被看做冒泡排序，时间复杂度为O(n2)。
+ * 空间复杂度是递归过程中的需要占据的空间，最优情况下空间复杂度为O(nlogn)，很明显它是不稳定的。
  * @Date: 2020/12/27 20:32
  */
 public class QuickSort {

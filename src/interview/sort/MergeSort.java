@@ -3,6 +3,7 @@ package interview.sort;
 /**
  * @Author: czd
  * @Description:
+ * 归并排序的时间复杂度为O(nlogn)，空间复杂度为O(n)，是一种稳定的排序算法。
  * @Date: 2020/12/27 21:30
  */
 public class MergeSort {
