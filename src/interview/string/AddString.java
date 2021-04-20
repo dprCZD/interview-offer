@@ -2,7 +2,7 @@ package interview.string;
 
 /**
  * @Author: czd
- * @Description:
+ * @Description: 实现加法。
  * @Date: 2021/3/28 23:47
  */
 public class AddString {
