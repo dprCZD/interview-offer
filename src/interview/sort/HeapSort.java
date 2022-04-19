@@ -13,11 +13,11 @@ public class HeapSort {
 
     public static void main(String[] args) {
         int array[]={4,5,1,6,2,7,3,8};
-
+        heapSort(array);
         for(int i:array){
             System.out.println(i);
         }
-        System.out.println(GetLeastNumbers(array,4).toString());
+        System.out.println();
     }
 
     public static void heapSort(int []array){

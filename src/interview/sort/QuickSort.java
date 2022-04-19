@@ -26,7 +26,6 @@ public class QuickSort {
             return;
         }
         int mid = partition(array, start, end);
-        System.out.println(Arrays.toString(array));
         quickSort(array, start, mid - 1);
         quickSort(array, mid + 1, end);
 

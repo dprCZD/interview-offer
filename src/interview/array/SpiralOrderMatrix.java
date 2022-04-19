@@ -9,6 +9,16 @@ import java.util.List;
  * @Date: 2021/4/2 19:35
  */
 public class SpiralOrderMatrix {
+    public static void main(String[] args) {
+        int [][]matrix =new int[3][3];
+        matrix[0]=new int[]{1,2,3};
+        matrix[1]=new int[]{4,5,6};
+        matrix[2]=new int[]{7,8,9};
+
+
+        System.out.println(new SpiralOrderMatrix().spiralOrder(matrix));
+    }
+
     public List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> res =new ArrayList<>();
         if(matrix ==null||matrix.length==0||matrix[0].length==0){
@@ -38,7 +48,7 @@ public class SpiralOrderMatrix {
             while(j>=left&&up<=down){
                 res.add(matrix[i][j--]);
             }
-            down++;
+            down--;
             i=down;j=left;
             while(i>=up&&left<=right){
                 res.add(matrix[i--][j]);
