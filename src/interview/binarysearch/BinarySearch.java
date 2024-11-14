@@ -25,34 +25,50 @@ public class BinarySearch {
         return -1;
     }
 
+    /**
+     * 寻找最左侧的数，即寻找第一个>=target的数
+     *
+     * @param target
+     * @param array
+     * @return
+     */
     static int left(int target, int[] array) {
         int left = 0;
-        int right = array.length;
-        int mid = -1;
-        while (left < right) {
-            mid = (left + right) / 2;
+        int right = array.length - 1;
+        int ans = array.length;
+        while (left <= right) {
+            int mid = (left + right) / 2;
             if (array[mid] >= target) {
-                right = mid;
+                right = mid - 1;
+                ans = mid;
             } else {
                 left = mid + 1;
             }
         }
-        return left;
+        return ans;
     }
 
+    /**
+     * 寻找最右侧的数，即寻找第一个>target的数-1
+     *
+     * @param target
+     * @param array
+     * @return
+     */
     static int right(int target, int[] array) {
         int left = 0;
-        int right = array.length;
-        int mid = -1;
-        while (left < right) {
-            mid = (left + right) / 2;
-            if (array[mid] <= target) {
-                left = mid + 1;
+        int right = array.length - 1;
+        int ans = array.length;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            if (array[mid] > target) {
+                right = mid - 1;
+                ans = mid;
             } else {
-                right = mid;
+                left = mid + 1;
             }
         }
-        return right-1;
+        return ans - 1;
     }
 
     public static void main(String[] args) {

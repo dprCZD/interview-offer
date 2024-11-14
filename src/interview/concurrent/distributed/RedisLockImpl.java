@@ -54,10 +54,28 @@ public class RedisLockImpl extends DistributedLock {
         }
 
         public Object get(String key) {
-            return null;
+            return -1L;
         }
 
         public void del(String key) {
         }
+    }
+
+    public static void main(String[] args)  {
+       RedisClient client =  new RedisClient();
+        DistributedLock lock = new RedisLockImpl("test",client);
+        try{
+            boolean locked = lock.tryLock(3000L);
+            if(locked){
+                //do biz logic
+            } else {
+                throw new IllegalAccessException("获取分布式锁失败");
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } finally {
+            lock.unLock();
+        }
+
     }
 }

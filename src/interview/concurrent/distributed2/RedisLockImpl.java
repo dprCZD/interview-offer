@@ -8,7 +8,7 @@ package interview.concurrent.distributed2;
 public class RedisLockImpl implements DistributedLock {
 
 
-    private RedisClient redis;
+    private RedisClient redis = new RedisClient();
 
 
     private boolean tryLock(String key, Long uuid, Long expireTime) throws IllegalAccessException {
@@ -20,12 +20,7 @@ public class RedisLockImpl implements DistributedLock {
             return redis.setnx(key, uuid, expireTime);
             //> 这里加锁失败抛出异常
         } catch (Exception e) {
-            try {
-                redis.del(key);
-            } catch (Exception e1) {
-                throw new IllegalAccessException("分布式锁删除锁失败！");
-            }
-            throw new IllegalAccessException("分布式锁加锁失败！");
+            throw new IllegalAccessException("分布式锁加锁失败！" + e.getMessage());
         }
     }
 
@@ -59,10 +54,19 @@ public class RedisLockImpl implements DistributedLock {
         }
 
         public Object get(String key) {
-            return null;
+            return -1L;
         }
 
         public void del(String key) {
         }
+    }
+
+    public static void main(String[] args) throws IllegalAccessException {
+        DistributedLock lock = new RedisLockImpl();
+        lock.doBizInLock("test", 3000L, () -> {
+            //> do biz logic
+            System.out.println("testtest");
+            return null;
+        });
     }
 }
