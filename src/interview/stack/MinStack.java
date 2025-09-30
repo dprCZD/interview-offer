@@ -1,5 +1,6 @@
 package interview.stack;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -10,58 +11,52 @@ import java.util.Scanner;
  */
 public class MinStack {
 
-    LinkedList<Integer> dataStack;
+    private LinkedList<Integer> dataList ;
 
-    LinkedList<Integer> minStack;
+    private LinkedList<Integer> minList;
 
-    MinStack(){
-        this.dataStack=new LinkedList<>();
-        this.minStack=new LinkedList<>();
+    private int min =Integer.MAX_VALUE;
+
+    public MinStack() {
+        dataList = new LinkedList<>();
+        minList = new LinkedList<>();
+
     }
 
-    public void push(Integer value){
-        dataStack.add(value);
-        if(minStack.isEmpty()){
-            minStack.add(value);
-        }else if(this.getMin()>=value){
-            minStack.add(value);
+    public void push(int val) {
+        dataList.addLast(val);
+        if(minList.isEmpty()|| min>=val)
+        {
+            minList.addLast(val);
+            min = val;
         }
     }
 
-    public Integer pop(){
-        Integer popValue=dataStack.removeLast();
-        if(popValue.equals(minStack.getLast())){
-            minStack.removeLast();
+    public void pop()
+    {
+        int val = dataList.removeLast();
+        if(val == min)
+        {
+            minList.removeLast();
+            if(!minList.isEmpty())
+            {
+                min = minList.getLast();
+            }
+            else
+            {
+                min = Integer.MAX_VALUE;
+            }
         }
-        return popValue;
     }
 
-    public Integer getMin(){
-        if(minStack.isEmpty()){
-            return -1;
-        }
-        return minStack.getLast();
+    public int top() {
+        return dataList.getLast();
     }
 
-    public Integer peek(){
-        if(dataStack.isEmpty()){
-            return -1;
-        }
-        return dataStack.getLast();
-    }
-
-    static int test(){
-        int i=1;
-    try{
-        return i++;
-    }
-    finally {
-        return i+5;
-
-    }
+    public int getMin() {
+        return min;
     }
     public static void main(String[] args) {
-        System.out.println(test());
 //        MinStack stack=new MinStack();
 //        Scanner sc=new Scanner(System.in);
 //        int operateNum=Integer.valueOf(sc.nextLine());
@@ -78,3 +73,7 @@ public class MinStack {
 //        }
     }
 }
+
+
+
+

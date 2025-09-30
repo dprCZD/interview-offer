@@ -14,22 +14,34 @@ import java.util.Stack;
 public class ValidParentheses {
 
     public boolean isValid(String s) {
-        if (s == null || s.length() == 0) {
-            return false;
+        if(s == null || s.length() ==0)
+        {
+            return true;
         }
+        int n = s.length();
+
         Stack<Character> stack = new Stack<>();
-        char[] chars = s.toCharArray();
-        for (char cur : chars) {
-            if (!stack.isEmpty()) {
-                Character peek = stack.peek();
-                //运算符&&的优先级打大于||，不过为了清晰还是加了括号
-                if ((peek == '{' && cur == '}') || (peek == '[' && cur == ']') || (peek == '(' && cur == ')')) {
-                    stack.pop();
-                    continue;
+
+        for(int i =0;i<n;i++)
+        {
+            char cur = s.charAt(i);
+            // Left push
+            if(cur == '{' || cur == '(' || cur == '[')
+            {
+                stack.push(cur);
+            }
+            else
+            {
+                if(stack.isEmpty())
+                {
+                    return false;
+                }
+                char top = stack.pop();
+                if(cur == '}' && top != '{' || cur == ')' && top !='(' || cur == ']' && top != '[')
+                {
+                    return false;
                 }
             }
-            stack.push(cur);
-
         }
         return stack.isEmpty();
 
